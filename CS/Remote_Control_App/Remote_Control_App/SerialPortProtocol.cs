@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO.Ports;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,9 +9,10 @@ namespace Remote_Control_App
 {
     class SerialPortProtocol
     {
+        _comPort SerialPort;
         public SerialPortProtocol()
         {
-
+            _comPort = SerialPort();
         }
 
 
@@ -38,9 +40,7 @@ namespace Remote_Control_App
 
         void Message(string message)
         {
-            string tx = "foo";
-            //_comPort.Write(message);
-            //TXWINDOW.Clear();
+            _comPort.Write(message);
         }
 
     }
