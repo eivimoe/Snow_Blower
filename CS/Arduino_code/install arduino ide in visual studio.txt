@@ -1,0 +1,10 @@
+Install arduino IDE on Visual Studio
+
+1. Open Visual Studio
+2. Click Tools > Extension > Online > Search for Arduino > Arduino IDE for Visual Studio
+3. Install
+4. Download Ardunio 1.6/1.8 IDE
+5. Finish
+
+
+https://www.youtube.com/watch?v=6_06J9Btghw
