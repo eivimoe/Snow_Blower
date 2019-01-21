@@ -42,10 +42,12 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMinMax = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnLift = new System.Windows.Forms.Button();
+            this.btnRotation = new System.Windows.Forms.Button();
+            this.btnAngle = new System.Windows.Forms.Button();
+            this.btnRun = new System.Windows.Forms.Button();
+            this.btnStopSnowBlower = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -235,79 +237,113 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // button1
+            // btnLift
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(47, 183);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 50);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "A";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnLift.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLift.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
+            this.btnLift.FlatAppearance.BorderSize = 0;
+            this.btnLift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLift.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLift.Location = new System.Drawing.Point(47, 183);
+            this.btnLift.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLift.Name = "btnLift";
+            this.btnLift.Size = new System.Drawing.Size(50, 50);
+            this.btnLift.TabIndex = 12;
+            this.btnLift.Text = "Lift";
+            this.btnLift.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnRotation
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(189, 183);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "D";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnRotation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRotation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
+            this.btnRotation.FlatAppearance.BorderSize = 0;
+            this.btnRotation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRotation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotation.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRotation.Location = new System.Drawing.Point(189, 183);
+            this.btnRotation.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRotation.Name = "btnRotation";
+            this.btnRotation.Size = new System.Drawing.Size(50, 50);
+            this.btnRotation.TabIndex = 14;
+            this.btnRotation.Text = "Rot";
+            this.btnRotation.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnAngle
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(118, 183);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(50, 50);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "S";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnAngle.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAngle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
+            this.btnAngle.FlatAppearance.BorderSize = 0;
+            this.btnAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAngle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAngle.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnAngle.Location = new System.Drawing.Point(118, 183);
+            this.btnAngle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAngle.Name = "btnAngle";
+            this.btnAngle.Size = new System.Drawing.Size(50, 50);
+            this.btnAngle.TabIndex = 13;
+            this.btnAngle.Text = "Angl";
+            this.btnAngle.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnRun
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.Control;
-            this.button4.Location = new System.Drawing.Point(118, 120);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(50, 50);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "W";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnRun.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(162)))), ((int)(((byte)(184)))));
+            this.btnRun.FlatAppearance.BorderSize = 0;
+            this.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRun.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRun.Location = new System.Drawing.Point(118, 120);
+            this.btnRun.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(50, 50);
+            this.btnRun.TabIndex = 11;
+            this.btnRun.Text = "Run";
+            this.btnRun.UseVisualStyleBackColor = false;
+            // 
+            // btnStopSnowBlower
+            // 
+            this.btnStopSnowBlower.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStopSnowBlower.BackColor = System.Drawing.Color.Red;
+            this.btnStopSnowBlower.FlatAppearance.BorderSize = 0;
+            this.btnStopSnowBlower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStopSnowBlower.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopSnowBlower.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnStopSnowBlower.Location = new System.Drawing.Point(93, 237);
+            this.btnStopSnowBlower.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStopSnowBlower.Name = "btnStopSnowBlower";
+            this.btnStopSnowBlower.Size = new System.Drawing.Size(100, 50);
+            this.btnStopSnowBlower.TabIndex = 15;
+            this.btnStopSnowBlower.Text = "Stop";
+            this.btnStopSnowBlower.UseVisualStyleBackColor = false;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReset.BackColor = System.Drawing.Color.Gray;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReset.Location = new System.Drawing.Point(93, 300);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(100, 50);
+            this.btnReset.TabIndex = 16;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnStopSnowBlower);
+            this.Controls.Add(this.btnLift);
+            this.Controls.Add(this.btnRotation);
+            this.Controls.Add(this.btnAngle);
+            this.Controls.Add(this.btnRun);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnFullStop);
@@ -342,10 +378,12 @@
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnFullStop;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnLift;
+        private System.Windows.Forms.Button btnRotation;
+        private System.Windows.Forms.Button btnAngle;
+        private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.Button btnStopSnowBlower;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 
