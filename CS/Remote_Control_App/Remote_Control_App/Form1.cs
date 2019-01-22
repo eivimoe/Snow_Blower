@@ -12,10 +12,8 @@ using System.Windows.Forms;
 
 /* 
  - Receiving repeatedly from snowblower
- - Probably need a receive box and a transmit box
-     
-     
-     
+ - Probably need a receive textbox and a transmit textbox
+ 
      */
 
 
@@ -104,6 +102,7 @@ namespace Remote_Control_App
         // Add text to textbox
         private void DisplayText(object sender, EventArgs e)
         {
+            RXWINDOW.Text = "";
             RXWINDOW.AppendText(RxString);
 
         }
@@ -143,14 +142,14 @@ namespace Remote_Control_App
         // Full stop
         private void btnFullStop_Click(object sender, EventArgs e)
         {
-            I_comPort.Write("ms");
+            I_comPort.Write("ms_");
             RXWINDOW.Clear();
         }
 
         // Stop snowblower
         private void btnStopSnowBlower_Click(object sender, EventArgs e)
         {
-            I_comPort.Write("ss");
+            I_comPort.Write("ss_");
             RXWINDOW.Clear();
         }
 
@@ -165,7 +164,7 @@ namespace Remote_Control_App
         // Reset snowblower
         private void btnReset_Click(object sender, EventArgs e)
         {
-            I_comPort.Write("sR");
+            I_comPort.Write("sR_");
             RXWINDOW.Clear();
         }
 
@@ -190,6 +189,12 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("sd_" + tx);
+            RXWINDOW.Clear();
+        }
+
+        private void btnStopBrush_Click(object sender, EventArgs e)
+        {
+            I_comPort.Write("bs_");
             RXWINDOW.Clear();
         }
     }

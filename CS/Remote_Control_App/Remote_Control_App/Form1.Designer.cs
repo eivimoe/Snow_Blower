@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlHeader = new System.Windows.Forms.Panel();
-            this.I_comPort = new System.IO.Ports.SerialPort();
-            this.O_comPort = new System.IO.Ports.SerialPort();
             this.lblComPort = new System.Windows.Forms.Label();
             this.lblEvent = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMinMax = new System.Windows.Forms.Button();
             this.lblClock = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
+            this.I_comPort = new System.IO.Ports.SerialPort(this.components);
+            this.O_comPort = new System.IO.Ports.SerialPort(this.components);
             this.btnForward = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -55,6 +56,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnStopBrush = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -154,6 +156,14 @@
             this.btnExit.TabIndex = 5;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // I_comPort
+            // 
+            this.I_comPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.I_comPort_DataReceived);
+            // 
+            // O_comPort
+            // 
+            this.O_comPort.PortName = "COM4";
             // 
             // btnForward
             // 
@@ -405,14 +415,6 @@
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
             // 
-            // serialPort1
-            // 
-            this.I_comPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.I_comPort_DataReceived);
-            // 
-            // serialPort2
-            // 
-            this.O_comPort.PortName = "COM4";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Remote_Control_App.Properties.Resources.photo_1;
@@ -424,11 +426,29 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // btnStopBrush
+            // 
+            this.btnStopBrush.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnStopBrush.BackColor = System.Drawing.Color.Red;
+            this.btnStopBrush.FlatAppearance.BorderSize = 0;
+            this.btnStopBrush.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStopBrush.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStopBrush.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnStopBrush.Location = new System.Drawing.Point(0, 41);
+            this.btnStopBrush.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStopBrush.Name = "btnStopBrush";
+            this.btnStopBrush.Size = new System.Drawing.Size(133, 62);
+            this.btnStopBrush.TabIndex = 21;
+            this.btnStopBrush.Text = "Stop Brush";
+            this.btnStopBrush.UseVisualStyleBackColor = false;
+            this.btnStopBrush.Click += new System.EventHandler(this.btnStopBrush_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.btnStopBrush);
             this.Controls.Add(this.btnRotation);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.RXWINDOW);
@@ -489,6 +509,7 @@
         private System.Windows.Forms.TextBox RXWINDOW;
         private System.Windows.Forms.Label lblComPort;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button btnStopBrush;
     }
 }
 
