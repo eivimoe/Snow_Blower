@@ -9,6 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+/* 
+ - Receiving repeatedly from snowblower
+ - Probably need a receive box and a transmit box
+     
+     
+     
+     */
+
+
 namespace Remote_Control_App
 {
     public partial class Form1 : Form
