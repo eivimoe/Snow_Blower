@@ -13,7 +13,6 @@ namespace Remote_Control_App
 {
     public partial class Form1 : Form
     {
-        SerialPort _comPort;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -24,7 +23,6 @@ namespace Remote_Control_App
         string RxString;
         public Form1()
         {
-            _comPort = new SerialPort();
             InitializeComponent();
         }
 
@@ -64,33 +62,32 @@ namespace Remote_Control_App
         // CONNECT
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            _comPort.PortName = RXWINDOW.Text;
-            _comPort.BaudRate = 9600;
-            _comPort.Open();
+            I_comPort.PortName = RXWINDOW.Text;
+            I_comPort.BaudRate = 9600;
+            I_comPort.Open();
 
-            if (!_comPort.IsOpen) return;
+            if (!I_comPort.IsOpen) return;
            btnConnect.Enabled = false;
 
             MessageBox.Show("Connected", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            lblComPort.Text = "Connected - " + _comPort.PortName;
+            lblComPort.Text = "Connected - " + I_comPort.PortName;
             RXWINDOW.Text = "";
         }
 
         // DISCONNECT
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
-            if (_comPort.IsOpen)
-                _comPort.Close();
+            if (I_comPort.IsOpen)
+                I_comPort.Close();
             btnConnect.Enabled = true;
             lblComPort.Text = "Disconnected";
             MessageBox.Show("Disconnected", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Event for data recieved
-        private void _comPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void I_comPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            RXWINDOW.Clear();
-            RxString = _comPort.ReadExisting();
+            RxString = I_comPort.ReadExisting();
             this.Invoke(new EventHandler(DisplayText));
         }
 
@@ -105,7 +102,7 @@ namespace Remote_Control_App
         private void btnForward_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("mf_" + tx);
+            I_comPort.Write("mf_" + tx);
             RXWINDOW.Clear();
         }
 
@@ -113,7 +110,7 @@ namespace Remote_Control_App
         private void btnLeft_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("ml_" + tx);
+            I_comPort.Write("ml_" + tx);
             RXWINDOW.Clear();
         }
 
@@ -121,7 +118,7 @@ namespace Remote_Control_App
         private void btnBack_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("mb_" + tx);
+            I_comPort.Write("mb_" + tx);
             RXWINDOW.Clear();
         }
 
@@ -129,21 +126,21 @@ namespace Remote_Control_App
         private void btnRight_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("mr_" + tx);
+            I_comPort.Write("mr_" + tx);
             RXWINDOW.Clear();
         }
 
         // Full stop
         private void btnFullStop_Click(object sender, EventArgs e)
         {
-            _comPort.Write("ms");
+            I_comPort.Write("ms");
             RXWINDOW.Clear();
         }
 
         // Stop snowblower
         private void btnStopSnowBlower_Click(object sender, EventArgs e)
         {
-            _comPort.Write("ss");
+            I_comPort.Write("ss");
             RXWINDOW.Clear();
         }
 
@@ -151,14 +148,14 @@ namespace Remote_Control_App
         private void btnRun_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("sr_" + tx);
+            I_comPort.Write("sr_" + tx);
             RXWINDOW.Clear();
         }
 
         // Reset snowblower
         private void btnReset_Click(object sender, EventArgs e)
         {
-            _comPort.Write("sR");
+            I_comPort.Write("sR");
             RXWINDOW.Clear();
         }
 
@@ -166,7 +163,7 @@ namespace Remote_Control_App
         private void btnLift_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("sl_" + tx);
+            I_comPort.Write("sl_" + tx);
             RXWINDOW.Clear();
         }
 
@@ -174,7 +171,7 @@ namespace Remote_Control_App
         private void btnAngle_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("sa_" + tx);
+            I_comPort.Write("sa_" + tx);
             RXWINDOW.Clear();
         }
 
@@ -182,7 +179,7 @@ namespace Remote_Control_App
         private void btnRotation_Click(object sender, EventArgs e)
         {
             string tx = RXWINDOW.Text;
-            _comPort.Write("sd_" + tx);
+            I_comPort.Write("sd_" + tx);
             RXWINDOW.Clear();
         }
     }
