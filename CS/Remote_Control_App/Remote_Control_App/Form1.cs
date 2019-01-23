@@ -10,12 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-/* 
- - Receiving repeatedly from snowblower
- - Probably need a receive textbox and a transmit textbox
- 
-     */
-
 
 namespace Remote_Control_App
 {
@@ -205,7 +199,7 @@ namespace Remote_Control_App
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-
+            richTextBox1.ScrollToCaret();
         }
     }
 }

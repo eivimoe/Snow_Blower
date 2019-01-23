@@ -310,39 +310,39 @@ void loop()
 
         case 'f':
             goForward(value);
-            //Serial.println("Case - f");
+            Serial.println("Go forward");
             //Serial.println(value);
             reset();
-            //delay(500);
+            //delay(500); // Necessary? Go forward for how long?
            // fullStop(0);
             break;
 
         //turn left
         case 'l':
             turnLeft(value);
-            Serial.println("Case - l");
+            Serial.println("Go left");
             reset();
             break;
 
         //case turn right
         case 'r':
             turnRight(value);
-            Serial.println("Case - r");
+            Serial.println("Go right");
             reset();
             break;
 
         //case reverse
         case 'b':
             goBackward(value);
-            Serial.println("Case - b");
+            Serial.println("Go back");
             reset();
             break;
 
         //case reverse
         case 's':
             fullStop(0);
-            Serial.println("Case - s");
-            areset();
+            Serial.println("Stop");
+            //areset();
             break;
 
         default:
@@ -354,9 +354,10 @@ void loop()
             Serial.println("part:");
             Serial.println(part);
             Serial.println("Case - default");
-            areset();
+            //areset();
             break;
         }
+        areset();
     }
 
     /*
@@ -368,42 +369,42 @@ void loop()
 
         case 's':
             stopSnowblower();
-            Serial.println("Case - s");
+            Serial.println("Stop SB");
             reset();
             break;
 
         //case on - motor C
         case 'r':
             runSnowblower(value);
-            Serial.println("Case - r");
+            Serial.println("Run SB");
             reset();
             break;
 
         //case lift
         case 'l':
             liftSnowblower(value);
-            Serial.println("Case - l");
+            Serial.println("Lift SB");
             reset();
             break;
 
         //reset lift
         case 'R':
             resetSnowblower();
-            Serial.println("Case - R");
+            Serial.println("Reset SB");
             reset();
             break;
 
         //case direction (left-right) shute
         case 'd':
             setChuteRotation(value);
-            Serial.println("Case - d");
+            Serial.println("Set Rot");
             //areset();   
             break;
         //case angle (up-down) shute
 
         case 'a':
             setChuteAngle(value);
-            Serial.println("Case - ca");
+            Serial.println("Set Angl");
             //areset();
             break;
 
@@ -425,34 +426,34 @@ void loop()
         //case default off
         case 's':
             stopBrush();
-            Serial.println("Case - s");
+            Serial.println("Stop brush");
             reset();
             break;
 
         //case on
         case 'r':
-            Serial.println("Case - r");
+            Serial.println("Run brush");
             runBrush(value);
             reset();
             break;
 
         //case direction (left-right)
         case 'd':
-            Serial.println("Case - d");
+            Serial.println("Brush Dir");
             setBrushDirection(value); //1 for left, 2 for right
             reset();
             break;
         //case angle (up-down)
 
         case 'a':
-            Serial.println("Case - ba");
+            Serial.println("Brush Angl");
             setBrushAngle(value);
             reset();
             break;
 
         //reset Brush Angle
         case 'R':
-            Serial.println("Case - R");
+            Serial.println("Reset BAngl");
             resetBrushAngle();
             reset();
             break;

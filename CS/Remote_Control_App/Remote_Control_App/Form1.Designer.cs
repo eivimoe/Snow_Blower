@@ -472,6 +472,8 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(920, 221);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox1.Size = new System.Drawing.Size(132, 120);
             this.richTextBox1.TabIndex = 23;
             this.richTextBox1.Text = "";
