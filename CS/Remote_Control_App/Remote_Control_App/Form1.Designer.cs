@@ -57,6 +57,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnStopBrush = new System.Windows.Forms.Button();
+            this.lblResponse = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -75,7 +77,7 @@
             this.pnlHeader.Controls.Add(this.btnExit);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(800, 38);
             this.pnlHeader.TabIndex = 2;
@@ -109,7 +111,7 @@
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
             this.btnMinimize.Location = new System.Drawing.Point(701, 0);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(33, 38);
             this.btnMinimize.TabIndex = 3;
@@ -124,7 +126,7 @@
             this.btnMinMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinMax.Image = ((System.Drawing.Image)(resources.GetObject("btnMinMax.Image")));
             this.btnMinMax.Location = new System.Drawing.Point(734, 0);
-            this.btnMinMax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinMax.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinMax.Name = "btnMinMax";
             this.btnMinMax.Size = new System.Drawing.Size(33, 38);
             this.btnMinMax.TabIndex = 4;
@@ -151,7 +153,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.Location = new System.Drawing.Point(767, 0);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(33, 38);
             this.btnExit.TabIndex = 5;
@@ -175,7 +177,7 @@
             this.btnForward.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnForward.ForeColor = System.Drawing.SystemColors.Control;
             this.btnForward.Location = new System.Drawing.Point(630, 218);
-            this.btnForward.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnForward.Margin = new System.Windows.Forms.Padding(2);
             this.btnForward.Name = "btnForward";
             this.btnForward.Size = new System.Drawing.Size(50, 50);
             this.btnForward.TabIndex = 5;
@@ -192,7 +194,7 @@
             this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLeft.ForeColor = System.Drawing.SystemColors.Control;
             this.btnLeft.Location = new System.Drawing.Point(559, 281);
-            this.btnLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLeft.Margin = new System.Windows.Forms.Padding(2);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(50, 50);
             this.btnLeft.TabIndex = 6;
@@ -209,7 +211,7 @@
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.Control;
             this.btnBack.Location = new System.Drawing.Point(630, 281);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(50, 50);
             this.btnBack.TabIndex = 7;
@@ -226,7 +228,7 @@
             this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRight.ForeColor = System.Drawing.SystemColors.Control;
             this.btnRight.Location = new System.Drawing.Point(701, 281);
-            this.btnRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRight.Margin = new System.Windows.Forms.Padding(2);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(50, 50);
             this.btnRight.TabIndex = 8;
@@ -243,7 +245,7 @@
             this.btnFullStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFullStop.ForeColor = System.Drawing.SystemColors.Control;
             this.btnFullStop.Location = new System.Drawing.Point(606, 348);
-            this.btnFullStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFullStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnFullStop.Name = "btnFullStop";
             this.btnFullStop.Size = new System.Drawing.Size(100, 50);
             this.btnFullStop.TabIndex = 9;
@@ -260,7 +262,7 @@
             this.btnLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLift.ForeColor = System.Drawing.SystemColors.Control;
             this.btnLift.Location = new System.Drawing.Point(47, 183);
-            this.btnLift.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLift.Margin = new System.Windows.Forms.Padding(2);
             this.btnLift.Name = "btnLift";
             this.btnLift.Size = new System.Drawing.Size(50, 50);
             this.btnLift.TabIndex = 12;
@@ -277,7 +279,7 @@
             this.btnRotation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRotation.ForeColor = System.Drawing.SystemColors.Control;
             this.btnRotation.Location = new System.Drawing.Point(189, 183);
-            this.btnRotation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRotation.Margin = new System.Windows.Forms.Padding(2);
             this.btnRotation.Name = "btnRotation";
             this.btnRotation.Size = new System.Drawing.Size(50, 50);
             this.btnRotation.TabIndex = 14;
@@ -294,7 +296,7 @@
             this.btnAngle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAngle.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAngle.Location = new System.Drawing.Point(118, 183);
-            this.btnAngle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAngle.Margin = new System.Windows.Forms.Padding(2);
             this.btnAngle.Name = "btnAngle";
             this.btnAngle.Size = new System.Drawing.Size(50, 50);
             this.btnAngle.TabIndex = 13;
@@ -311,7 +313,7 @@
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRun.ForeColor = System.Drawing.SystemColors.Control;
             this.btnRun.Location = new System.Drawing.Point(118, 120);
-            this.btnRun.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRun.Margin = new System.Windows.Forms.Padding(2);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(50, 50);
             this.btnRun.TabIndex = 11;
@@ -328,7 +330,7 @@
             this.btnStopSnowBlower.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStopSnowBlower.ForeColor = System.Drawing.SystemColors.Control;
             this.btnStopSnowBlower.Location = new System.Drawing.Point(93, 249);
-            this.btnStopSnowBlower.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStopSnowBlower.Margin = new System.Windows.Forms.Padding(2);
             this.btnStopSnowBlower.Name = "btnStopSnowBlower";
             this.btnStopSnowBlower.Size = new System.Drawing.Size(100, 50);
             this.btnStopSnowBlower.TabIndex = 15;
@@ -345,7 +347,7 @@
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.ForeColor = System.Drawing.SystemColors.Control;
             this.btnReset.Location = new System.Drawing.Point(93, 312);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(100, 50);
             this.btnReset.TabIndex = 16;
@@ -362,7 +364,7 @@
             this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.ForeColor = System.Drawing.SystemColors.Control;
             this.btnConnect.Location = new System.Drawing.Point(688, 50);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(2);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(104, 50);
             this.btnConnect.TabIndex = 17;
@@ -379,7 +381,7 @@
             this.btnDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDisconnect.ForeColor = System.Drawing.SystemColors.Control;
             this.btnDisconnect.Location = new System.Drawing.Point(688, 104);
-            this.btnDisconnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDisconnect.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(104, 50);
             this.btnDisconnect.TabIndex = 18;
@@ -390,7 +392,7 @@
             // RXWINDOW
             // 
             this.RXWINDOW.Location = new System.Drawing.Point(701, 158);
-            this.RXWINDOW.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RXWINDOW.Margin = new System.Windows.Forms.Padding(2);
             this.RXWINDOW.Name = "RXWINDOW";
             this.RXWINDOW.Size = new System.Drawing.Size(76, 20);
             this.RXWINDOW.TabIndex = 19;
@@ -434,7 +436,7 @@
             this.btnStopBrush.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStopBrush.ForeColor = System.Drawing.SystemColors.Control;
             this.btnStopBrush.Location = new System.Drawing.Point(0, 33);
-            this.btnStopBrush.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStopBrush.Margin = new System.Windows.Forms.Padding(2);
             this.btnStopBrush.Name = "btnStopBrush";
             this.btnStopBrush.Size = new System.Drawing.Size(100, 50);
             this.btnStopBrush.TabIndex = 21;
@@ -442,11 +444,32 @@
             this.btnStopBrush.UseVisualStyleBackColor = false;
             this.btnStopBrush.Click += new System.EventHandler(this.btnStopBrush_Click);
             // 
+            // lblResponse
+            // 
+            this.lblResponse.AutoSize = true;
+            this.lblResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResponse.Location = new System.Drawing.Point(435, 63);
+            this.lblResponse.Name = "lblResponse";
+            this.lblResponse.Size = new System.Drawing.Size(0, 20);
+            this.lblResponse.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(347, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 20);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Response:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblResponse);
             this.Controls.Add(this.btnStopBrush);
             this.Controls.Add(this.btnRotation);
             this.Controls.Add(this.pictureBox3);
@@ -508,6 +531,8 @@
         private System.Windows.Forms.Label lblComPort;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btnStopBrush;
+        private System.Windows.Forms.Label lblResponse;
+        private System.Windows.Forms.Label label2;
     }
 }
 

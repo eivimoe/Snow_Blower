@@ -99,12 +99,16 @@ namespace Remote_Control_App
             this.Invoke(new EventHandler(DisplayText));
         }
 
+        void Reset()
+        {
+            lblResponse.Text = "";
+            RXWINDOW.Clear();
+        }
+
         // Add text to textbox
         private void DisplayText(object sender, EventArgs e)
         {
-            RXWINDOW.Text = "";
-            RXWINDOW.AppendText(RxString);
-
+            lblResponse.Text += RxString;
         }
 
         // Go Forward 
@@ -112,7 +116,7 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("mf_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Turn left
@@ -120,7 +124,7 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("ml_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Go backward
@@ -128,7 +132,7 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("mb_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Turn right
@@ -136,21 +140,21 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("mr_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Full stop
         private void btnFullStop_Click(object sender, EventArgs e)
         {
             I_comPort.Write("ms_");
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Stop snowblower
         private void btnStopSnowBlower_Click(object sender, EventArgs e)
         {
             I_comPort.Write("ss_");
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Run snowblower
@@ -158,14 +162,14 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("sr_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Reset snowblower
         private void btnReset_Click(object sender, EventArgs e)
         {
             I_comPort.Write("sR_");
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Lift snowblower
@@ -173,7 +177,7 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("sl_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Set chute angle
@@ -181,7 +185,7 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("sa_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         // Set chute rotation
@@ -189,13 +193,13 @@ namespace Remote_Control_App
         {
             string tx = RXWINDOW.Text;
             I_comPort.Write("sd_" + tx);
-            RXWINDOW.Clear();
+            Reset();
         }
 
         private void btnStopBrush_Click(object sender, EventArgs e)
         {
             I_comPort.Write("bs_");
-            RXWINDOW.Clear();
+            Reset();
         }
     }
 }
