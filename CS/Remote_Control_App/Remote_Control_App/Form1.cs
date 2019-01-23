@@ -108,7 +108,8 @@ namespace Remote_Control_App
         // Add text to textbox
         private void DisplayText(object sender, EventArgs e)
         {
-            lblResponse.Text += RxString;
+            richTextBox1.AppendText(RxString);
+            //lblResponse.Text += RxString;
         }
 
         // Go Forward 
@@ -200,6 +201,11 @@ namespace Remote_Control_App
         {
             I_comPort.Write("bs_");
             Reset();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
