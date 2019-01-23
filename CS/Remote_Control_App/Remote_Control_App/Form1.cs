@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
+/* 
+ - Receiving repeatedly from snowblower
+ - Probably need a receive textbox and a transmit textbox
+ 
+     */
+
 
 namespace Remote_Control_App
 {
@@ -19,6 +28,7 @@ namespace Remote_Control_App
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+        string RxString;
         public Form1()
         {
             InitializeComponent();
@@ -55,6 +65,147 @@ namespace Remote_Control_App
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        // CONNECT
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            I_comPort.PortName = RXWINDOW.Text;
+            I_comPort.BaudRate = 9600;
+            I_comPort.Open();
+
+            if (!I_comPort.IsOpen) return;
+           btnConnect.Enabled = false;
+
+            MessageBox.Show("Connected", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            lblComPort.Text = "Connected - " + I_comPort.PortName;
+            RXWINDOW.Text = "";
+        }
+
+        // DISCONNECT
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            if (I_comPort.IsOpen)
+                I_comPort.Close();
+            btnConnect.Enabled = true;
+            lblComPort.Text = "Disconnected";
+            MessageBox.Show("Disconnected", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Event for data recieved
+        private void I_comPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            RxString = I_comPort.ReadExisting();
+            this.Invoke(new EventHandler(DisplayText));
+        }
+
+        void Reset()
+        {
+            lblResponse.Text = "";
+            RXWINDOW.Clear();
+        }
+
+        // Add text to textbox
+        private void DisplayText(object sender, EventArgs e)
+        {
+            richTextBox1.AppendText(RxString);
+            //lblResponse.Text += RxString;
+        }
+
+        // Go Forward 
+        private void btnForward_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("mf_" + tx);
+            Reset();
+        }
+
+        // Turn left
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("ml_" + tx);
+            Reset();
+        }
+
+        // Go backward
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("mb_" + tx);
+            Reset();
+        }
+
+        // Turn right
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("mr_" + tx);
+            Reset();
+        }
+
+        // Full stop
+        private void btnFullStop_Click(object sender, EventArgs e)
+        {
+            I_comPort.Write("ms_");
+            Reset();
+        }
+
+        // Stop snowblower
+        private void btnStopSnowBlower_Click(object sender, EventArgs e)
+        {
+            I_comPort.Write("ss_");
+            Reset();
+        }
+
+        // Run snowblower
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("sr_" + tx);
+            Reset();
+        }
+
+        // Reset snowblower
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            I_comPort.Write("sR_");
+            Reset();
+        }
+
+        // Lift snowblower
+        private void btnLift_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("sl_" + tx);
+            Reset();
+        }
+
+        // Set chute angle
+        private void btnAngle_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("sa_" + tx);
+            Reset();
+        }
+
+        // Set chute rotation
+        private void btnRotation_Click(object sender, EventArgs e)
+        {
+            string tx = RXWINDOW.Text;
+            I_comPort.Write("sd_" + tx);
+            Reset();
+        }
+
+        private void btnStopBrush_Click(object sender, EventArgs e)
+        {
+            I_comPort.Write("bs_");
+            Reset();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
