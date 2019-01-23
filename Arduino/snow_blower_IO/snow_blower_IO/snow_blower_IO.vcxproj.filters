@@ -17,5 +17,9 @@
   <ItemGroup>
     <None Include="snow_blower_IO.ino" />
   </ItemGroup>
- 
+  <ItemGroup>
+    <ClInclude Include="__vm\.snow_blower_IO.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
