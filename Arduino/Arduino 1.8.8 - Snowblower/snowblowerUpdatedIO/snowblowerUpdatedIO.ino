@@ -8,18 +8,18 @@
   Code for controlling the platform for snow robot project
 */
 //defining pins for motor driver
-//motor A1 and 2
+//motor A1 and 2 - belt left side
 #define enA 6
-#define in1 49
-#define in2 48
-//motor B1 and 2
+#define in1 47
+#define in2 46
+//motor B1 and 2 - belt right side
 #define enB 7
 #define in3 43
 #define in4 42
 //motor C - Snowblower
 #define enC 8
-//#define in5 50
-//#define in6 51
+#define in5 50
+#define in6 51
 /*//motor D - Brush
 #define enD 18
 #define in7 52
@@ -91,11 +91,14 @@ void goForward(int pwm)
     //set Motor A Forward
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
-    analogWrite(enA, pwm);
+    delay(1000);
     // Set Motor B forward
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+    analogWrite(enA, pwm);
     analogWrite(enB, pwm);
+        
+    delay(1000);
 }
 
 void goBackward(int pwm)
@@ -105,8 +108,8 @@ void goBackward(int pwm)
     digitalWrite(in2, LOW);
     analogWrite(enA, pwm);
     // Set Motor B backwards
-    digitalWrite(in3, HIGH);
-    digitalWrite(in4, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
     analogWrite(enB, pwm);
 }
 
