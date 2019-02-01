@@ -92,6 +92,13 @@ void setup()
 **/
 void goForward(int pwm)
 {
+    digitalWrite(in2, HIGH);
+    for (int i= 0; i < 256; i++)
+    {
+      analogWrite(enB, i);
+      delay(200);
+    }
+    /*
     pwm = map(pwm, 0, 255, 255, 0);
     //set Motor A Forward
     digitalWrite(in1, LOW);
@@ -101,6 +108,7 @@ void goForward(int pwm)
     digitalWrite(in4, HIGH);
     analogWrite(enA, pwm);
     analogWrite(enB, pwm);
+    */
 }
 
 void goBackward(int pwm)
