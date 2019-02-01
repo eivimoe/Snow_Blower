@@ -9,13 +9,13 @@
 */
 //defining pins for motor driver
 //motor A1 and 2 - belt left side
-#define enA 6
-#define in1 47
-#define in2 46
+#define in1 6
+#define enA 47 // in1
+#define enB 46 // in2
 //motor B1 and 2 - belt right side
-#define enB 7
-#define in3 43
-#define in4 42
+#define in2 7
+//#define in3 43
+//#define in4 42
 //motor C - Snowblower
 #define enC 8
 #define in5 50
@@ -48,13 +48,12 @@ void setup()
     //motors
     pinMode(enA, OUTPUT);
     pinMode(enB, OUTPUT);
-    analogWrite(enB, 255);
     pinMode(enC, OUTPUT);
     //  pinMode(enD, OUTPUT);
     pinMode(in1, OUTPUT);
     pinMode(in2, OUTPUT);
-    pinMode(in3, OUTPUT);
-    pinMode(in4, OUTPUT);
+//    pinMode(in3, OUTPUT);
+//    pinMode(in4, OUTPUT);
 
 
     //pinMode(in5, OUTPUT);
@@ -92,11 +91,10 @@ void setup()
 **/
 void goForward(int pwm)
 {
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, LOW);
-  //analogWrite(enA, pwm);
-  //analogWrite(enB, pwm);
-
+  digitalWrite(enA, HIGH);
+  digitalWrite(enB, HIGH);
+  analogWrite(in1, 0);
+  analogWrite(in2, pwm);
   /*
     //set Motor A Forward
     digitalWrite(in1, LOW);
@@ -111,10 +109,10 @@ void goForward(int pwm)
 
 void goBackward(int pwm)
 {
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);
-  //analogWrite(enA, pwm);
-  //analogWrite(enB, pwm);
+  digitalWrite(enA, HIGH);
+  digitalWrite(enB, HIGH);
+  analogWrite(in1, pwm);
+  analogWrite(in2, 0);
   /*
     //set Motor A Backwards
     digitalWrite(in1, HIGH);
@@ -127,12 +125,12 @@ void goBackward(int pwm)
     */
 }
 
-void fullStop(int pwm)
+void fullStop()
 {
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, LOW);
-  //analogWrite(enA, pwm);
-  //analogWrite(enB, pwm);
+  digitalWrite(enA, LOW);
+  digitalWrite(enB, LOW);
+  analogWrite(in1, 0);
+  analogWrite(in2, 0);
   /*
     //set Motor A STOP
     digitalWrite(in1, LOW);
@@ -147,10 +145,10 @@ void fullStop(int pwm)
 
 void turnLeft(int pwm)
 {
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, HIGH);
-  //analogWrite(enA, pwm);
-  //analogWrite(enB, pwm);
+  digitalWrite(enA, HIGH);
+  digitalWrite(enB, LOW);
+  analogWrite(in1, pwm);
+  analogWrite(in2, pwm);
   /*
     //set Motor A Forward
     digitalWrite(in1, HIGH);
@@ -165,6 +163,11 @@ void turnLeft(int pwm)
 
 void turnRight(int pwm)
 {
+  digitalWrite(enA, HIGH);
+  digitalWrite(enB, HIGH);
+  analogWrite(in1, 0);
+  analogWrite(in2, pwm);
+  /*
     //set Motor A backwards
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
@@ -173,6 +176,7 @@ void turnRight(int pwm)
     digitalWrite(in3, HIGH);
     digitalWrite(in4, LOW);
     analogWrite(enB, pwm);
+    */
 }
 
 /**
@@ -370,13 +374,13 @@ void loop()
 
         //case reverse
         case 's':
-            fullStop(0);
+            fullStop();
             Serial.println("Stop");
             //areset();
             break;
 
         default:
-            fullStop(0);
+            fullStop();
             Serial.println("function:");
             Serial.println(function);
             Serial.println("value:");
