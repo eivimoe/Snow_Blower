@@ -92,6 +92,12 @@ void setup()
 **/
 void goForward(int pwm)
 {
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  //analogWrite(enA, pwm);
+  //analogWrite(enB, pwm);
+
+  /*
     //set Motor A Forward
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
@@ -100,10 +106,16 @@ void goForward(int pwm)
     digitalWrite(in4, HIGH);
     analogWrite(enA, pwm);
     analogWrite(enB, pwm);
+    */
 }
 
 void goBackward(int pwm)
 {
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  //analogWrite(enA, pwm);
+  //analogWrite(enB, pwm);
+  /*
     //set Motor A Backwards
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
@@ -112,10 +124,16 @@ void goBackward(int pwm)
     digitalWrite(in3, HIGH);
     digitalWrite(in4, LOW);
     analogWrite(enB, pwm);
+    */
 }
 
 void fullStop(int pwm)
 {
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  //analogWrite(enA, pwm);
+  //analogWrite(enB, pwm);
+  /*
     //set Motor A STOP
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
@@ -124,10 +142,16 @@ void fullStop(int pwm)
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW);
     analogWrite(enB, pwm);
+    */
 }
 
 void turnLeft(int pwm)
 {
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, HIGH);
+  //analogWrite(enA, pwm);
+  //analogWrite(enB, pwm);
+  /*
     //set Motor A Forward
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
@@ -136,6 +160,7 @@ void turnLeft(int pwm)
     digitalWrite(in3, LOW);
     digitalWrite(in4, HIGH);
     analogWrite(enB, pwm);
+    */
 }
 
 void turnRight(int pwm)
