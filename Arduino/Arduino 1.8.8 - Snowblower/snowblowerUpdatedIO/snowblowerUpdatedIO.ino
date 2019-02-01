@@ -93,8 +93,8 @@ void goForward(int pwm)
     digitalWrite(in2, HIGH);
     delay(1000);
     // Set Motor B forward
-    digitalWrite(in3, HIGH);
-    digitalWrite(in4, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
     analogWrite(enA, pwm);
     analogWrite(enB, pwm);
         
@@ -108,8 +108,8 @@ void goBackward(int pwm)
     digitalWrite(in2, LOW);
     analogWrite(enA, pwm);
     // Set Motor B backwards
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
     analogWrite(enB, pwm);
 }
 
