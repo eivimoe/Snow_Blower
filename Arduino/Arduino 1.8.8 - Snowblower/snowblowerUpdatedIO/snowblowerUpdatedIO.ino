@@ -46,20 +46,22 @@ byte index = 0;
 void setup()
 {
     //motors
-
     pinMode(enA, OUTPUT);
     pinMode(enB, OUTPUT);
+    analogWrite(enB, 255);
     pinMode(enC, OUTPUT);
     //  pinMode(enD, OUTPUT);
     pinMode(in1, OUTPUT);
     pinMode(in2, OUTPUT);
     pinMode(in3, OUTPUT);
     pinMode(in4, OUTPUT);
+
+
     //pinMode(in5, OUTPUT);
     //pinMode(in6, OUTPUT);
     //  pinMode(in7, OUTPUT);
     //  pinMode(in8, OUTPUT);
-
+    
     //servos
     snowBlower.attach(36);
 	snowBlower.write(90);
@@ -85,24 +87,25 @@ void setup()
 
 /**
    Functions for movement of snowblower
+
+   *PWM is mapped to account for the motor drivers reverse PWM signal*
 **/
 void goForward(int pwm)
 {
+    pwm = map(pwm, 0, 255, 255, 0);
     //set Motor A Forward
     digitalWrite(in1, LOW);
     digitalWrite(in2, HIGH);
-    delay(1000);
     // Set Motor B forward
     digitalWrite(in3, LOW);
     digitalWrite(in4, HIGH);
     analogWrite(enA, pwm);
     analogWrite(enB, pwm);
-        
-    delay(1000);
 }
 
 void goBackward(int pwm)
 {
+    pwm = map(pwm, 0, 255, 255, 0);
     //set Motor A Backwards
     digitalWrite(in1, HIGH);
     digitalWrite(in2, LOW);
@@ -115,6 +118,7 @@ void goBackward(int pwm)
 
 void fullStop(int pwm)
 {
+    pwm = map(pwm, 0, 255, 255, 0);
     //set Motor A STOP
     digitalWrite(in1, LOW);
     digitalWrite(in2, LOW);
@@ -127,25 +131,27 @@ void fullStop(int pwm)
 
 void turnLeft(int pwm)
 {
+    pwm = map(pwm, 0, 255, 255, 0);
     //set Motor A Forward
-    digitalWrite(in1, LOW);
-    digitalWrite(in2, HIGH);
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
     analogWrite(enA, pwm);
     //set Motor B Backwards
-    digitalWrite(in3, HIGH);
-    digitalWrite(in4, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
     analogWrite(enB, pwm);
 }
 
 void turnRight(int pwm)
 {
+    pwm = map(pwm, 0, 255, 255, 0);
     //set Motor A backwards
-    digitalWrite(in1, HIGH);
-    digitalWrite(in2, LOW);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
     analogWrite(enA, pwm);
     //set Motor B forwards
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
     analogWrite(enB, pwm);
 }
 
