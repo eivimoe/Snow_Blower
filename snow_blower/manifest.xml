@@ -1,0 +1,14 @@
+<package>
+  <description brief="snow_blower">
+
+     snow_blower
+
+  </description>
+  <author>Lars Olav Brekke</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/snow_blower</url>
+
+</package>
+
+
