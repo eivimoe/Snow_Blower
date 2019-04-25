@@ -47,12 +47,10 @@ add_dependencies(laserscan_library ${catkin_EXPORTED_TARGETS})
 target_link_libraries(laserscan_library utility_library)
 
 #talker
-#add_executable(talker_node src/talker_listener/talker.cpp)
-#target_link_libraries (talker_node ${catkin_LIBRARIES})
+add_executable(raspberry_node src/raspberry_node/raspberry_node.cpp)
+target_link_libraries (raspberry_node ${catkin_LIBRARIES})
 
-#listener
-#add_executable(listener_node src/talker_listener/listener.cpp)
-#target_link_libraries (listener_node ${catkin_LIBRARIES})
+
 
 add_executable(scan_subscriber_cpp src/scan_subscriber.cpp)
 target_link_libraries(scan_subscriber_cpp ${catkin_LIBRARIES})
