@@ -1,0 +1,30 @@
+Commands for controlling robot
+
+Datatype: string
+Length: 5
+Format: {part}{function}_{integer value}{integer value}
+
+PART		FUNCTION		STRING
+
+MOTOR (belt)
+		goForward		"mf_xx" where xx is a two-digit integer
+		turnLeft		"ml_xx"
+		turnRight		"mr_xx"
+		goBackward		"mb_xx"
+		fullStop		"ms"
+
+SNOWBLOWER (in front)
+		stopSnowblower		"ss"
+		runSnowblower		"sr_xx"
+		liftSnowblower		"sl_xx"
+		resetSnowblower		"sR"
+		setChuteRotation	"sd_xx"
+		setChuteAngle		"sa_xx"
+
+BRUSH (behind, not in use)
+		stopBrush		"bs"
+		runBrush		"br_xx"
+		setBrushDirection	"bd_x" // 1 for left, 2 for right
+		setBrushAngle		"ba_xx"
+		resetBrushAngle		"bR"
+
