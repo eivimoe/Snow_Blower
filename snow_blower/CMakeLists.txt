@@ -46,12 +46,16 @@ target_link_libraries(laserscan_library ${catkin_LIBRARIES})
 add_dependencies(laserscan_library ${catkin_EXPORTED_TARGETS})
 target_link_libraries(laserscan_library utility_library)
 
-#talker
-add_executable(raspberry_node src/raspberry_node/raspberry_node.cpp)
-target_link_libraries (raspberry_node ${catkin_LIBRARIES})
+#just arduino interface
+#add_executable(raspberry_node src/raspberry_node/raspberry_node.cpp)
+#target_link_libraries (raspberry_node ${catkin_LIBRARIES})
 
+#just lidar
+#add_executable(scan_subscriber_cpp src/scan_subscriber.cpp)
+#target_link_libraries(scan_subscriber_cpp ${catkin_LIBRARIES})
+#target_link_libraries(scan_subscriber_cpp laserscan_library)
 
-
-add_executable(scan_subscriber_cpp src/scan_subscriber.cpp)
-target_link_libraries(scan_subscriber_cpp ${catkin_LIBRARIES})
-target_link_libraries(scan_subscriber_cpp laserscan_library)
+#arduino interface and lidar
+add_executable(control src/control.cpp)
+target_link_libraries(control ${catkin_LIBRARIES})
+target_link_libraries(control laserscan_library)
