@@ -10,52 +10,63 @@
 #include "laserscan/LaserScanner.h"
 #include "std_msgs/String.h"
 #include <sstream>
+#include <string>
 
 
 using namespace std;
 
-//sensor_msgs::LaserScan _scanMsg;
+//Define subscribers and publishers
 ros::Subscriber scanSubscriber;
+ros::Subscriber arduinoSubscriber;
+
+ros::Publisher arduinoPublisher;
+
+//msgs string for arduino communication
+std_msgs::String msg;
+
+//create a string for the data
+std::stringstream ss;
+
+bool obstacleTooClose;
+string prevArduinoResponse;
 
 void scanCallback (sensor_msgs::LaserScan scanMessage);
 void arduino_Callback(const std_msgs::String::ConstPtr& arduino_msg);
+void avoidObstacle();
+void publishToArduino(string command);
+
 
 int main(int argc, char **argv){
+    obstacleTooClose = false;
 
 	// Initiate new ROS node named "raspberry_pi"
 	ros::init(argc, argv, "raspberry_pi");
 	ros::NodeHandle n;
 
     //create a publisher with a topic "robot_movement" that will send a String message
-	ros::Publisher pub = n.advertise<std_msgs::String>("robot_movement", 1000);
+	arduinoPublisher = n.advertise<std_msgs::String>("robot_movement", 1000);
 
 	//subscribe to the laser scanner topic
 	scanSubscriber = n.subscribe("/scan", 10, scanCallback);
 
     //Create a new subscriber with topic name "robot_feedback"
-    ros::Subscriber sub = n.subscribe("robot_feedback", 1000, arduino_Callback); 
+    arduinoSubscriber = n.subscribe("robot_feedback", 1000, arduino_Callback); 
 
 	
-	//Rate is a class the is used to define frequency for a loop. Here we send a message each two seconds.
+	//Rate is a class the is used to define frequency for a loop. Here we send a message each second.
 	ros::Rate loop_rate(1); //1 message per second
 
-       while (ros::ok()) // Keep spinning loop until user presses Ctrl+C
-   {
-       //create a new String ROS message.
+    while (ros::ok()) // Keep spinning loop until user presses Ctrl+C
+    {
 	   //Message definition in this link http://docs.ros.org/api/std_msgs/html/msg/String.html
-	   std_msgs::String msg;
-
-       //create a string for the data
-	   std::stringstream ss;
-       
-       ss << "mf_55";
-
-	   //assign the string data to ROS message data field
-       msg.data = ss.str();
-
-       //Publish the message
-       pub.publish(msg);
-       //pub.publish("mf_55");
+        
+        //if lidar detects object, full stop. else move forward
+        if (obstacleTooClose || prevArduinoResponse != ss.str()){
+            avoidObstacle();
+        }
+        else {
+            publishToArduino("mf_90");
+        }
 
        ros::spinOnce(); // Need to call this function often to allow ROS to process incoming messages
 
@@ -65,12 +76,11 @@ int main(int argc, char **argv){
 }
 
 void scanCallback (sensor_msgs::LaserScan scanMessage){
-	//_scanMsg = scanMessage;
-	cout<<"minimum range: " <<LaserScanner::getMinimumRange(scanMessage)<<endl;
-    cout<<"maximum range: " <<LaserScanner::getMaximumRange(scanMessage)<<endl;
-    cout<<"average range: " <<LaserScanner::getAverageRange(scanMessage,0,600)<<endl;
+	//cout<<"minimum range: " <<LaserScanner::getMinimumRange(scanMessage)<<endl;
+    //cout<<"maximum range: " <<LaserScanner::getMaximumRange(scanMessage)<<endl;
+    //cout<<"average range: " <<LaserScanner::getAverageRange(scanMessage,0,600)<<endl;
     if (LaserScanner::isObstacleTooClose(scanMessage,0,360,0.30)==true){
-        cout<<"obstacle too close"<<endl;
+        obstacleTooClose = true;
     }
     cout<<endl;
 
@@ -78,5 +88,25 @@ void scanCallback (sensor_msgs::LaserScan scanMessage){
 
 void arduino_Callback(const std_msgs::String::ConstPtr& arduino_msg)
 {
-    ROS_INFO(" I heard: [%s]\n", arduino_msg->data.c_str());
+    prevArduinoResponse = "";
+    prevArduinoResponse = arduino_msg->data.c_str();
 }
+
+void avoidObstacle(){
+    publishToArduino("a");
+    //implement function to turn according to angle where object is detected
+    //publishToArduino("mr_90");
+
+}
+
+void publishToArduino(string command){
+    ss << "";
+    ss << command;
+
+	//assign the string data to ROS message data field
+    msg.data = ss.str();
+
+    //Publish the message
+    arduinoPublisher.publish(msg);
+}
+
