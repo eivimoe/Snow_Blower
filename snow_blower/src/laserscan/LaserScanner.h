@@ -48,7 +48,7 @@ public:
   static double getMaximumRangeRight(sensor_msgs::LaserScan & laser_scan_msg, double degree);
   
   static bool isObstacleTooClose(sensor_msgs::LaserScan & LaserMsg, int start_index, int end_index, double DistanceThreshold);
-  
+  static bool isMeasurementReliable(sensor_msgs::LaserScan & LaserMsg, int min_index);
 //private:
   
 };

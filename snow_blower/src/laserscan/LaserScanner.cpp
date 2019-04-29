@@ -82,6 +82,33 @@ if(!std::isnan(LaserScanMsg.ranges[i])){
     }
 }
   } 
+  return min_index; 
+  
+}
+
+double LaserScanner::getMinimumRange(sensor_msgs::LaserScan & LaserScanMsg, int start_index, int end_index){
+  //get initial value of max_index for the first valid range
+  int min_index = 0;
+  for(int i = start_index; i < end_index ; i++){
+if(!std::isnan(LaserScanMsg.ranges[i])){
+    if((LaserScanMsg.ranges[i]>= LaserScanMsg.range_min) && (LaserScanMsg.ranges[i]<= LaserScanMsg.range_max)){
+      min_index = i;
+      break;
+    }
+}
+  }
+  //look for max_index
+  for(int i = min_index+1; i < end_index ; i++){
+if(!std::isnan(LaserScanMsg.ranges[i])){
+    if((LaserScanMsg.ranges[i]>= LaserScanMsg.range_min) && (LaserScanMsg.ranges[i]<= LaserScanMsg.range_max)){
+      if (LaserScanMsg.ranges[min_index]>LaserScanMsg.ranges[i]){
+	//std::cout<<"max_index changed "<<i<<" new range: "<<LaserScanMsg.ranges[i]<<std::endl;  
+	min_index=i;
+      }
+      
+    }
+}
+  } 
   return LaserScanMsg.ranges[min_index]; 
   
 }
@@ -268,9 +295,29 @@ double LaserScanner::getRelativeAngleOfMinimumRange(sensor_msgs::LaserScan & Las
 bool LaserScanner::isObstacleTooClose(sensor_msgs::LaserScan & LaserMsg, int start_index, int end_index, double DistanceThreshold){
   bool result=false;
   //for front obstacle choose start_index = 260 and end_index=380
-  if (getMinimumRange(LaserMsg, start_index, end_index)< DistanceThreshold)
-    result=true;
+  int min_index = getMinimumRange(LaserMsg, start_index, end_index);
+  if (LaserMsg.Ranges[min_index] < DistanceThreshold) {
+    if (isMeasurementReliable(LaserMsg, min_index))
+      result=true;
+
+  }
   
+  return result;
+}
+
+/** ****************************************************************************
+ * Function: isMeasurementReliable (sensor_msgs::LaserScan & LaserScanMsg, int min_index)
+ * Input: LaserScan message, integer
+ * Output: boolean for whether measurement is reliable by checking neighbouring indexes
+ * ***************************************************************************/ 
+bool LaserScanner::isMeasurementReliable(sensor_msgs::LaserScan & LaserMsg, int min_index){
+  bool result = false;
+  testMeasurementOne = LaserMsg.Ranges[min_index - 1];
+  testMeasurementTwo = LaserMsg.Ranges[min_index + 1];
+  if ((((LaserMsg.Ranges[min_index] - testMeasurementOne) > 0.05) || (LaserMsg.Ranges[min_index] - testMeasurementTwo) > 0.05)){
+    result = true;
+  }
+
   return result;
 }
 
