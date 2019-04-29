@@ -1,0 +1,9 @@
+<launch>
+
+	<node pkg="rplidar" type="rplidarNode" name="lidar_node" />
+
+	<node pkg="rosserial_python" type="serial_node" name="serial_node" />
+
+	<node pkg="snow_blower" type="control" name="raspberry_node" />
+
+</launch>
