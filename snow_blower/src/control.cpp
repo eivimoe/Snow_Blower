@@ -15,6 +15,10 @@
 
 using namespace std;
 
+ // define states
+ enum State {forward, stop, turn};
+
+
 //Define subscribers and publishers
 ros::Subscriber scanSubscriber;
 ros::Subscriber arduinoSubscriber;
@@ -37,7 +41,10 @@ void publishToArduino(string command);
 
 
 int main(int argc, char **argv){
+
     obstacleTooClose = false;
+    State currentState = forward;
+    int loopCounter = 0;
 
 	// Initiate new ROS node named "raspberry_pi"
 	ros::init(argc, argv, "raspberry_pi");
@@ -54,25 +61,43 @@ int main(int argc, char **argv){
 
 	
 	//Rate is a class the is used to define frequency for a loop. Here we send a message each second.
-	ros::Rate loop_rate(1); //1 message per second, must be tweaked
+	ros::Rate loop_rate(0.5); //1 message per second, must be tweaked
 
     while (ros::ok()) // Keep spinning loop until user presses Ctrl+C
     {
-	   //Message definition in this link http://docs.ros.org/api/std_msgs/html/msg/String.html
+        switch (currentState)
+        {
+            case forward:
+                    if(obstacleTooClose){
+                        publishToArduino("a"); // stop all
+                        currentState = turn;
+                    }
+                    else {
+                        publishToArduino("mf_90");
+                    }
+                break;
+            case turn:
+                if(loopCounter >= 50 && !obstacleTooClose){ // loopcounter must be changed according to number of loops it takes for the robot to turn 90 degrees
+                    loopCounter = 0;
+                    currentState = forward;
+                }
+                else{
+                    // Decide whether to turn right or left
+                        // turn right or left
+                    publishToArduino("ml_90"); // left turn
+                    loopCounter++;
+                }
+                break;
+            default:
+                break;
+        }
         
         //if lidar detects object, full stop. else move forward
-        // || prevArduinoResponse != ss.str()
-        if (obstacleTooClose){
-            avoidObstacle();
-	    // Enter subroutine for turning
-        }
-        else {
-            publishToArduino("mf_90");
-        }
 
        ros::spinOnce(); // Need to call this function often to allow ROS to process incoming messages
 
       loop_rate.sleep(); // Sleep for the rest of the cycle, 
+    }
    return 0;
 }
 
