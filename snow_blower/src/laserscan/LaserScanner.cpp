@@ -86,34 +86,6 @@ if(!std::isnan(LaserScanMsg.ranges[i])){
   
 }
 
-double LaserScanner::getMinimumRange(sensor_msgs::LaserScan & LaserScanMsg, int start_index, int end_index){
-  //get initial value of max_index for the first valid range
-  int min_index = 0;
-  for(int i = start_index; i < end_index ; i++){
-if(!std::isnan(LaserScanMsg.ranges[i])){
-    if((LaserScanMsg.ranges[i]>= LaserScanMsg.range_min) && (LaserScanMsg.ranges[i]<= LaserScanMsg.range_max)){
-      min_index = i;
-      break;
-    }
-}
-  }
-  //look for max_index
-  for(int i = min_index+1; i < end_index ; i++){
-if(!std::isnan(LaserScanMsg.ranges[i])){
-    if((LaserScanMsg.ranges[i]>= LaserScanMsg.range_min) && (LaserScanMsg.ranges[i]<= LaserScanMsg.range_max)){
-      if (LaserScanMsg.ranges[min_index]>LaserScanMsg.ranges[i]){
-	//std::cout<<"max_index changed "<<i<<" new range: "<<LaserScanMsg.ranges[i]<<std::endl;  
-	min_index=i;
-      }
-      
-    }
-}
-  } 
-  return LaserScanMsg.ranges[min_index]; 
-  
-}
-
-
 double LaserScanner::getMinimumRangeRight(sensor_msgs::LaserScan & laser_scan_msg, double degree){
   int start_index = 0;
   int end_index = (int)(degree/radian2degree(laser_scan_msg.angle_increment));
@@ -292,14 +264,20 @@ double LaserScanner::getRelativeAngleOfMinimumRange(sensor_msgs::LaserScan & Las
  * Input: LaserScan message
  * Output: the angle corresponding to the miniumun range
  * ***************************************************************************/ 
-bool LaserScanner::isObstacleTooClose(sensor_msgs::LaserScan & LaserMsg, int start_index, int end_index, double DistanceThreshold){
-  bool result=false;
+int LaserScanner::isObstacleTooClose(sensor_msgs::LaserScan & LaserMsg, int start_index, int end_index, double DistanceThreshold){
+  int result=0;
   //for front obstacle choose start_index = 260 and end_index=380
   int min_index = getMinimumRange(LaserMsg, start_index, end_index);
-  if (LaserMsg.Ranges[min_index] < DistanceThreshold) {
-    if (isMeasurementReliable(LaserMsg, min_index))
-      result=true;
-
+  if (LaserMsg.ranges[min_index] < DistanceThreshold && (min_index <= 30 && min_index >= 330)) {
+    measurementResult = isMeasurementReliable(LaserMsg, min_index);
+    if (measurementResult != 0){
+      if (min_index < 0 && min_index >= 330)
+        result = 1;
+      else if (min_index <= 30 && min_index > 0)
+        result = -1;
+      else if (min_index == 0)
+        result = measurementResult;
+    } 
   }
   
   return result;
@@ -308,15 +286,16 @@ bool LaserScanner::isObstacleTooClose(sensor_msgs::LaserScan & LaserMsg, int sta
 /** ****************************************************************************
  * Function: isMeasurementReliable (sensor_msgs::LaserScan & LaserScanMsg, int min_index)
  * Input: LaserScan message, integer
- * Output: boolean for whether measurement is reliable by checking neighbouring indexes
+ * Output: integer for whether measurement is reliable by checking neighbouring indexes
  * ***************************************************************************/ 
-bool LaserScanner::isMeasurementReliable(sensor_msgs::LaserScan & LaserMsg, int min_index){
-  bool result = false;
-  testMeasurementOne = LaserMsg.Ranges[min_index - 1];
-  testMeasurementTwo = LaserMsg.Ranges[min_index + 1];
-  if ((((LaserMsg.Ranges[min_index] - testMeasurementOne) > 0.05) || (LaserMsg.Ranges[min_index] - testMeasurementTwo) > 0.05)){
-    result = true;
-  }
+int LaserScanner::isMeasurementReliable(sensor_msgs::LaserScan & LaserMsg, int min_index){
+  int result = 0;
+  double testMeasurementOne = LaserMsg.ranges[min_index - 1];
+  double testMeasurementTwo = LaserMsg.ranges[min_index + 1];
+  if (((LaserMsg.ranges[min_index] - testMeasurementOne) > 0.05)) 
+    result = -1;
+  else if(LaserMsg.ranges[min_index] - testMeasurementTwo) > 0.05))
+    result = 1;
 
   return result;
 }
@@ -340,7 +319,7 @@ void LaserScanner::printLaserScanRanges(sensor_msgs::LaserScan::ConstPtr LaserSc
   // * time-handling sugar is provided by the client library
   cout << setw(20)<< "Stamp: " << LaserScanMsg->header.stamp <<endl;
   //Frame this data is associated with 0: no frame, 1: global frame
-  cout << setw(20)<< "Frame_ID: " << LaserScanMsg->header.frame_id <<endl<<endl;
+  cout << setw(20)<< "Frame_ID: " << LaserScanMsg->header.frame_id, <<endl<<endl;
   
   /** sensor_msgs/LaserScan.msg */
   cout << "LaserScan Info (sensor_msgs/LaserScan.msg) "<<endl; 
