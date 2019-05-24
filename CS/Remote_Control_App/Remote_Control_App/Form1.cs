@@ -109,37 +109,34 @@ namespace Remote_Control_App
         // Go Forward 
         private void btnForward_Click(object sender, EventArgs e)
         {
-            string tx = RXWINDOW.Text;
-            I_comPort.Write("mf_" + tx);
-            Reset();
+            goForward();
         }
 
         // Turn left
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            string tx = RXWINDOW.Text;
-            I_comPort.Write("ml_" + tx);
-            Reset();
+            goLeft();
         }
 
         // Go backward
         private void btnBack_Click(object sender, EventArgs e)
         {
-            string tx = RXWINDOW.Text;
-            I_comPort.Write("mb_" + tx);
-            Reset();
+            goBack();
         }
 
         // Turn right
         private void btnRight_Click(object sender, EventArgs e)
         {
-            string tx = RXWINDOW.Text;
-            I_comPort.Write("mr_" + tx);
-            Reset();
+            goRight();
         }
 
         // Full stop
         private void btnFullStop_Click(object sender, EventArgs e)
+        {
+            FullStop();
+        }
+
+        private void FullStop()
         {
             I_comPort.Write("ms_");
             Reset();
@@ -148,14 +145,19 @@ namespace Remote_Control_App
         // Stop snowblower
         private void btnStopSnowBlower_Click(object sender, EventArgs e)
         {
-            I_comPort.Write("ss_");
-            Reset();
+            StopSnowBlower();
         }
 
         // Run snowblower
         private void btnRun_Click(object sender, EventArgs e)
         {
+            RunSnowBlower();
+        }
+
+        private void RunSnowBlower()
+        {
             string tx = RXWINDOW.Text;
+            if (tx == string.Empty) tx = "100";
             I_comPort.Write("sr_" + tx);
             Reset();
         }
@@ -163,8 +165,8 @@ namespace Remote_Control_App
         // Reset snowblower
         private void btnReset_Click(object sender, EventArgs e)
         {
-            I_comPort.Write("sR_");
             Reset();
+            I_comPort.Write("sR_");
         }
 
         // Lift snowblower
@@ -200,6 +202,71 @@ namespace Remote_Control_App
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             richTextBox1.ScrollToCaret();
+        }
+
+        private void goRight()
+        {
+            string tx = txtVel.Text;
+            if (tx == string.Empty) tx = "100";
+            I_comPort.Write("mr_" + tx);
+        }
+
+        private void goBack()
+        {
+            string tx = txtVel.Text;
+            if (tx == string.Empty) tx = "100";
+            I_comPort.Write("mb_" + tx);
+        }
+
+        private void goLeft()
+        {
+            string tx = txtVel.Text;
+            if (tx == string.Empty) tx = "100";
+            I_comPort.Write("ml_" + tx);
+        }
+
+        private void goForward()
+        {
+            string tx = txtVel.Text;
+            if (tx == string.Empty) tx = "100";
+            I_comPort.Write("mf_" + tx);
+        }
+
+        private void StopSnowBlower()
+        {
+            I_comPort.Write("ss_");
+            Reset();
+        }
+
+        // Hot keys handler
+
+        void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (RXWINDOW.Focused == false && txtVel.Focused == false)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.W:
+                        goForward();
+                        break;
+                    case Keys.A:
+                        goLeft();
+                        break;
+                    case Keys.S:
+                        goBack();
+                        break;
+                    case Keys.D:
+                        goRight();
+                        break;
+                    case Keys.Space:
+                        FullStop();
+                        break;
+                    default:
+                        FullStop();
+                        break;
+                }
+                e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
+            }
         }
     }
 }
