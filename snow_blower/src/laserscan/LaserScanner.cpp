@@ -269,7 +269,7 @@ int LaserScanner::isObstacleTooClose(sensor_msgs::LaserScan & LaserMsg, int star
   //for front obstacle choose start_index = 260 and end_index=380
   int min_index = getMinimumRange(LaserMsg, start_index, end_index);
   if (LaserMsg.ranges[min_index] < DistanceThreshold && (min_index <= 30 && min_index >= 330)) {
-    measurementResult = isMeasurementReliable(LaserMsg, min_index);
+    bool measurementResult = isMeasurementReliable(LaserMsg, min_index);
     if (measurementResult != 0){
       if (min_index < 0 && min_index >= 330)
         result = 1;
@@ -294,7 +294,7 @@ int LaserScanner::isMeasurementReliable(sensor_msgs::LaserScan & LaserMsg, int m
   double testMeasurementTwo = LaserMsg.ranges[min_index + 1];
   if (((LaserMsg.ranges[min_index] - testMeasurementOne) > 0.05)) 
     result = -1;
-  else if(LaserMsg.ranges[min_index] - testMeasurementTwo) > 0.05))
+  else if((LaserMsg.ranges[min_index] - testMeasurementTwo) > (0.05))
     result = 1;
 
   return result;
@@ -319,7 +319,7 @@ void LaserScanner::printLaserScanRanges(sensor_msgs::LaserScan::ConstPtr LaserSc
   // * time-handling sugar is provided by the client library
   cout << setw(20)<< "Stamp: " << LaserScanMsg->header.stamp <<endl;
   //Frame this data is associated with 0: no frame, 1: global frame
-  cout << setw(20)<< "Frame_ID: " << LaserScanMsg->header.frame_id, <<endl<<endl;
+  cout << setw(20)<< "Frame_ID: " << LaserScanMsg->header.frame_id <<endl<<endl;
   
   /** sensor_msgs/LaserScan.msg */
   cout << "LaserScan Info (sensor_msgs/LaserScan.msg) "<<endl; 
